@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--
+
+        This pom file define default properties, dependencies, plugins, ...
+        used in HexoCraft libs.
+
+    -->
+
+    <!-- Artifact properties -->
+    <groupId>com.github.hexocraft-lib</groupId>
+    <artifactId>hexocraftlib</artifactId>
+    <version>2.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <!-- Info -->
+    <name>${project.artifactId}</name>
+    <description></description>
+    <url>https://github.com/HexoCraft-lib/${project.name}</url>
+    
+    <!-- Want to contibute? Anybody is welcome -->
+    <developers>
+        <developer>
+            <id>hexosse</id>
+            <name>hexosse</name>
+            <url>https://github.com/hexosse</url>
+        </developer>
+    </developers>
+
+    <!-- All hexocraft libs are under Apache2.0 license -->
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <!-- Source control -->
+    <scm>
+        <connection>scm:git:git://github.com/HexoCraft-lib/${project.name}.git</connection>
+        <developerConnection>scm:git:git@github.com:HexoCraft-lib/${project.name}.git</developerConnection>
+        <url>http://github.com/HexoCraft-lib/${project.name}</url>
+    </scm>
+
+    <!-- Issue management -->
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/HexoCraft-lib/${project.name}/issues</url>
+    </issueManagement>
+
+    <!-- Jenkins server -->
+    <ciManagement>
+        <system>Jenkins</system>
+        <url>http://jenkins.hexocube.fr/job/hexocraft-lib/job/${project.name}</url>
+    </ciManagement>
+
+    <!-- Properties -->
+    <properties>
+        <!-- All libs are now built with java 1.8 -->
+        <hexocraftJdkVersion>1.8</hexocraftJdkVersion>
+        <maven.compiler.source>${hexocraftJdkVersion}</maven.compiler.source>
+        <maven.compiler.target>${hexocraftJdkVersion}</maven.compiler.target>
+
+        <!-- Source code and resources are in UTF-8 -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Maven Plugin Properties -->
+        <hexocraftMavenEnforcerPluginVersion>3.0.0-M1</hexocraftMavenEnforcerPluginVersion>     <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-enforcer-plugin -->
+        <hexocraftMavenCleanPluginVersion>3.1.0</hexocraftMavenCleanPluginVersion>              <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-clean-plugin -->
+        <hexocraftMavenCompilerPluginVersion>3.7.0</hexocraftMavenCompilerPluginVersion>        <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
+        <hexocraftMavenSourcePluginVersion>3.0.1</hexocraftMavenSourcePluginVersion>            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-source-plugin -->
+        <hexocraftMavenJavadocPluginVersion>3.0.1</hexocraftMavenJavadocPluginVersion>          <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-javadoc-plugin -->
+        <hexocraftMavenJarPluginVersion>3.1.0</hexocraftMavenJarPluginVersion>                  <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-jar-plugin -->
+        <hexocraftMavenShadePluginVersion>3.1.1</hexocraftMavenShadePluginVersion>              <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-shade-plugin -->
+        <hexocraftMavenProGuardPluginVersion>2.0.14</hexocraftMavenProGuardPluginVersion>       <!-- https://wvengen.github.io/proguard-maven-plugin/ -->
+        <hexocraftMavenProGuardVersion>5.3.3</hexocraftMavenProGuardVersion>
+        <hexocraftMavenInstallPluginVersion>2.5.2</hexocraftMavenInstallPluginVersion>          <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-install-plugin -->
+        <hexocraftMavenDeployPluginVersion>2.8.2</hexocraftMavenDeployPluginVersion>            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-deploy-plugin -->
+
+        <!-- External dependencies  -->
+        <hexocraftGuavaVersion>25.1-jre</hexocraftGuavaVersion>                                 <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+        <hexocraftGsonVersion>2.8.5</hexocraftGsonVersion>                                      <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+
+        <!-- Plugins dependencies -->
+        <hexocraftVaultVersion>1.5.6</hexocraftVaultVersion>
+        <hexocraftWorldEditVersion>6.1.7.3</hexocraftWorldEditVersion>
+        <hexocraftWorldGuardVersion>6.2.1</hexocraftWorldGuardVersion>
+
+        <!-- Spigot versions -->
+        <spigot.latest>1.12.2-R0.1-SNAPSHOT</spigot.latest>
+        <spigot.1.12.2>1.12.2-R0.1-SNAPSHOT</spigot.1.12.2>
+        <spigot.1.11.2>1.11.2-R0.1-SNAPSHOT</spigot.1.11.2>
+        <spigot.1.10.2>1.10.2-R0.1-SNAPSHOT</spigot.1.10.2>
+        <spigot.1.9.4>1.9.4-R0.1-SNAPSHOT</spigot.1.9.4>
+        <spigot.1.8.8>1.8.8-R0.1-SNAPSHOT</spigot.1.8.8>
+    </properties>
+
+    <!-- HexoCrat artifactory repository should have all needed artifacts to build the libs -->
+    <repositories>
+       <repository>
+            <id>hexocraft-repo</id>
+            <url>http://repo.hexocube.fr/artifactory/public</url>
+        </repository>
+    </repositories>
+
+    <!-- HexoCrat artifactory server -->
+    <distributionManagement>
+        <snapshotRepository>
+            <id>hexocraft-snapshots</id>
+            <url>http://repo.hexocube.fr/artifactory/snapshot-local</url>
+        </snapshotRepository>
+        <repository>
+            <id>hexocraft-releases</id>
+            <url>http://repo.hexocube.fr/artifactory/release-local</url>
+        </repository>
+    </distributionManagement>
+
+    <build>
+        <!-- Basics -->
+        <defaultGoal>clean install</defaultGoal>
+        <sourceDirectory>${project.basedir}/src</sourceDirectory>
+        <finalName>${project.artifactId}</finalName>
+
+        <!-- Plugins -->
+        <plugins>
+            <!-- Enforcer -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+            </plugin>
+            <!-- Compiler -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+        </plugins>
+
+        <!-- Plugin Management -->
+        <pluginManagement>
+            <plugins>
+                <!-- Enforcer -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>${hexocraftMavenEnforcerPluginVersion}</version>
+                    <executions>
+                        <execution>
+                            <id>enforce-versions</id>
+                            <goals>
+                                <goal>enforce</goal>
+                            </goals>
+                            <configuration>
+                                <rules>
+                                    <requireJavaVersion>
+                                        <version>${hexocraftJdkVersion}</version>
+                                    </requireJavaVersion>
+                                </rules>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <!-- Clean -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>${hexocraftMavenCleanPluginVersion}</version>
+                </plugin>
+                <!-- Compiler -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${hexocraftMavenCompilerPluginVersion}</version>
+                    <configuration>
+                        <source>${hexocraftJdkVersion}</source>
+                        <target>${hexocraftJdkVersion}</target>
+                    </configuration>
+                </plugin>
+                <!-- Source -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>${hexocraftMavenSourcePluginVersion}</version>
+                    <executions>
+                        <execution>
+                            <id>attach-sources</id>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <!-- Javadoc -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${hexocraftMavenJavadocPluginVersion}</version>
+                    <executions>
+                        <execution>
+                            <id>attach-javadocs</id>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <author>true</author>
+                        <doctitle>${project.name} ${project.version} : ${project.description}</doctitle>
+                        <windowtitle>${project.name} ${project.version} : ${project.description}</windowtitle>
+                        <packagesheader>${project.url}</packagesheader>
+                        <quiet>true</quiet>
+                        <includeDependencySources>true</includeDependencySources>
+                        <dependencySourceIncludes>
+                            <dependencySourceInclude>com.github.hexocraft.lib:**</dependencySourceInclude>
+                        </dependencySourceIncludes>
+                    </configuration>
+                </plugin>
+                <!-- Jar -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${hexocraftMavenJarPluginVersion}</version>
+                </plugin>
+                <!-- Shade -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-shade-plugin</artifactId>
+                    <version>${hexocraftMavenShadePluginVersion}</version>
+                </plugin>
+                <!-- ProGuard -->
+                <plugin>
+                    <groupId>com.github.wvengen</groupId>
+                    <artifactId>proguard-maven-plugin</artifactId>
+                    <version>${hexocraftMavenProGuardPluginVersion}</version>
+                    <executions>
+                        <execution>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>proguard</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <proguardVersion>${hexocraftMavenProGuardVersion}</proguardVersion>
+                        <proguardInclude>${basedir}/proguard.conf</proguardInclude>
+                        <dependencies>
+                            <dependency>
+                                <groupId>net.sf.proguard</groupId>
+                                <artifactId>proguard-base</artifactId>
+                                <version>${hexocraftMavenProGuardVersion}</version>
+                                <scope>runtime</scope>
+                            </dependency>
+                        </dependencies>
+                    </configuration>
+                </plugin>
+                <!-- Install -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>${hexocraftMavenInstallPluginVersion}</version>
+                </plugin>
+                <!-- Deploy -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>${hexocraftMavenDeployPluginVersion}</version>
+                </plugin>
+            </plugins>
+
+        </pluginManagement>
+    </build>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Guava -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${hexocraftGuavaVersion}</version>
+            </dependency>
+            <!-- Gson -->
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${hexocraftGsonVersion}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>
