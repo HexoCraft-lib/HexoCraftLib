@@ -80,7 +80,7 @@
         <hexocraftMavenInstallPluginVersion>2.5.2</hexocraftMavenInstallPluginVersion>          <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-install-plugin -->
         <hexocraftMavenDeployPluginVersion>2.8.2</hexocraftMavenDeployPluginVersion>            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-deploy-plugin -->
 
-        <!-- External dependencies  -->
+        <!-- External dependencies -->
         <hexocraftGuavaVersion>25.1-jre</hexocraftGuavaVersion>                                 <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
         <hexocraftGsonVersion>2.8.5</hexocraftGsonVersion>                                      <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
 
@@ -118,11 +118,20 @@
         </repository>
     </distributionManagement>
 
+    <!-- Build options -->
     <build>
         <!-- Basics -->
         <defaultGoal>clean install</defaultGoal>
         <sourceDirectory>${project.basedir}/src</sourceDirectory>
         <finalName>${project.artifactId}</finalName>
+
+        <!-- Ressources -->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
 
         <!-- Plugins -->
         <plugins>
