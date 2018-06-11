@@ -240,5 +240,5 @@ $RECYCLE.BIN/
 
 # End of https://www.gitignore.io/api/java,maven,intellij,eclipse,visualstudiocode,windows,linux,macos
 
-### Intellij idea ###
-.idea
+### Personal data ###
+**/.*
