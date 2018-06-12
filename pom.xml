@@ -66,6 +66,7 @@
 
         <!-- Source code and resources are in UTF-8 -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- Maven Plugin Properties -->
         <hexocraftMavenGitCommiIdPluginVersion>2.2.4</hexocraftMavenGitCommiIdPluginVersion>    <!-- https://github.com/ktoso/maven-git-commit-id-plugin/blob/master/README.md -->
