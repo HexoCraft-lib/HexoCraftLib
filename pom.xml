@@ -81,6 +81,14 @@
         <hexocraftMavenProGuardVersion>5.3.3</hexocraftMavenProGuardVersion>
         <hexocraftMavenInstallPluginVersion>2.5.2</hexocraftMavenInstallPluginVersion>          <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-install-plugin -->
         <hexocraftMavenDeployPluginVersion>2.8.2</hexocraftMavenDeployPluginVersion>            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-deploy-plugin -->
+        <hexocraftMavenSonarPluginVersion>3.4.0.905</hexocraftMavenSonarPluginVersion>          <!-- https://mvnrepository.com/artifact/org.sonarsource.scanner.maven/sonar-maven-plugin -->
+        <hexocraftMavenJacocoPluginVersion>0.8.1</hexocraftMavenJacocoPluginVersion>            <!-- https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin -->
+
+        <!-- SonarQube -->                                                                      <!-- https://docs.sonarqube.org/display/SONAR/Analysis+Parameters -->
+        <sonar.host.url>http://sonarqube.hexocube.fr/</sonar.host.url>
+        <sonar.projectKey>${project.artifactId}</sonar.projectKey>
+        <sonar.language>java</sonar.language>
+        <sonar.jacoco.reportPaths>${project.build.directory}/jacoco.exec</sonar.jacoco.reportPaths>
 
         <!-- External dependencies -->
         <hexocraftGuavaVersion>25.1-jre</hexocraftGuavaVersion>                                 <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
@@ -119,6 +127,23 @@
             <url>http://repo.hexocube.fr/artifactory/release-local</url>
         </repository>
     </distributionManagement>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Guava -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${hexocraftGuavaVersion}</version>
+            </dependency>
+            <!-- Gson -->
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${hexocraftGsonVersion}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <!-- Build options -->
     <build>
@@ -194,9 +219,7 @@
                     <executions>
                         <execution>
                             <id>enforce-versions</id>
-                            <goals>
-                                <goal>enforce</goal>
-                            </goals>
+                            <goals><goal>enforce</goal></goals>
                             <configuration>
                                 <rules>
                                     <requireJavaVersion>
@@ -231,9 +254,7 @@
                     <executions>
                         <execution>
                             <id>attach-sources</id>
-                            <goals>
-                                <goal>jar</goal>
-                            </goals>
+                            <goals><goal>jar</goal></goals>
                         </execution>
                     </executions>
                 </plugin>
@@ -245,9 +266,7 @@
                     <executions>
                         <execution>
                             <id>attach-javadocs</id>
-                            <goals>
-                                <goal>jar</goal>
-                            </goals>
+                            <goals><goal>jar</goal></goals>
                         </execution>
                     </executions>
                     <configuration>
@@ -282,9 +301,7 @@
                     <executions>
                         <execution>
                             <phase>package</phase>
-                            <goals>
-                                <goal>proguard</goal>
-                            </goals>
+                            <goals><goal>proguard</goal></goals>
                         </execution>
                     </executions>
                     <configuration>
@@ -317,21 +334,71 @@
         </pluginManagement>
     </build>
 
-    <dependencyManagement>
-        <dependencies>
-            <!-- Guava -->
-            <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>${hexocraftGuavaVersion}</version>
-            </dependency>
-            <!-- Gson -->
-            <dependency>
-                <groupId>com.google.code.gson</groupId>
-                <artifactId>gson</artifactId>
-                <version>${hexocraftGsonVersion}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+    <!-- Profiles -->
+    <profiles>
+        <profile>
+            <!-- Profile Id -->
+            <id>sonar</id>
+
+            <!-- Build options -->
+            <build>
+                <!-- Plugins -->
+                <plugins>
+                    <!-- SonarQube -->
+                    <plugin>
+                        <groupId>org.sonarsource.scanner.maven</groupId>
+                        <artifactId>sonar-maven-plugin</artifactId>
+                    </plugin>
+                    <!-- Jacoco -->
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                    </plugin>
+                </plugins>
+
+                <!-- Plugin Management -->
+                <pluginManagement>
+                    <plugins>
+                        <!-- SonarQube -->
+                        <plugin>
+                            <groupId>org.sonarsource.scanner.maven</groupId>
+                            <artifactId>sonar-maven-plugin</artifactId>
+                                <version>${hexocraftMavenSonarPluginVersion}</version>
+                            <executions>
+                                <execution>
+                                    <phase>verify</phase>
+                                    <goals><goal>sonar</goal></goals>
+                                </execution>
+                            </executions>
+                        </plugin>
+                        <!-- Jacoco -->
+                        <plugin>
+                            <groupId>org.jacoco</groupId>
+                            <artifactId>jacoco-maven-plugin</artifactId>
+                                <version>${hexocraftMavenJacocoPluginVersion}</version>
+                            <executions>
+                                <execution>
+                                    <id>prepare-agent</id>
+                                    <goals><goal>prepare-agent</goal></goals>
+                                </execution>
+                                <execution>
+                                    <id>prepare-agent-integration</id>
+                                    <goals><goal>prepare-agent-integration</goal></goals>
+                                </execution>
+                                <execution>
+                                    <id>jacoco-report</id>
+                                    <phase>verify</phase>
+                                    <goals><goal>report</goal></goals>
+                                </execution>
+                            </executions>
+                            <configuration>
+                                <append>true</append>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
