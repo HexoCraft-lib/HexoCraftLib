@@ -68,6 +68,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- Maven Plugin Properties -->
+        <hexocraftMavenGitCommiIdPluginVersion>2.2.4</hexocraftMavenGitCommiIdPluginVersion>    <!-- https://github.com/ktoso/maven-git-commit-id-plugin/blob/master/README.md -->
         <hexocraftMavenEnforcerPluginVersion>3.0.0-M1</hexocraftMavenEnforcerPluginVersion>     <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-enforcer-plugin -->
         <hexocraftMavenCleanPluginVersion>3.1.0</hexocraftMavenCleanPluginVersion>              <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-clean-plugin -->
         <hexocraftMavenCompilerPluginVersion>3.7.0</hexocraftMavenCompilerPluginVersion>        <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
@@ -135,6 +136,11 @@
 
         <!-- Plugins -->
         <plugins>
+            <!-- Git commit id -->
+            <plugin>
+                <groupId>pl.project13.maven</groupId>
+                <artifactId>git-commit-id-plugin</artifactId>
+            </plugin>
             <!-- Enforcer -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -150,6 +156,35 @@
         <!-- Plugin Management -->
         <pluginManagement>
             <plugins>
+                <!-- Git commit id -->
+                <plugin>
+                    <groupId>pl.project13.maven</groupId>
+                    <artifactId>git-commit-id-plugin</artifactId>
+                    <version>${hexocraftMavenGitCommiIdPluginVersion}</version>
+                    <executions>
+                        <execution>
+                            <phase>validate</phase>
+                            <goals><goal>revision</goal></goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <verbose>false</verbose>
+                        <failOnNoGitDirectory>true</failOnNoGitDirectory>
+                        <failOnUnableToExtractRepoInfo>false</failOnUnableToExtractRepoInfo>
+                        <useNativeGit>true</useNativeGit>
+                        <skipPoms>true</skipPoms>
+                        <runOnlyOnce>true</runOnlyOnce>
+                        <injectAllReactorProjects>true</injectAllReactorProjects>
+                        <generateGitPropertiesFile>true</generateGitPropertiesFile>
+                        <generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties</generateGitPropertiesFilename>
+                        <format>json</format>
+                        <gitDescribe>
+                            <skip>false</skip>
+                            <always>false</always>
+                            <dirty>-dirty</dirty>
+                        </gitDescribe>
+                    </configuration>
+                </plugin>
                 <!-- Enforcer -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
