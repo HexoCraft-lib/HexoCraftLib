@@ -123,7 +123,7 @@
     <build>
         <!-- Basics -->
         <defaultGoal>clean install</defaultGoal>
-        <sourceDirectory>${project.basedir}/src</sourceDirectory>
+        <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
         <finalName>${project.artifactId}</finalName>
 
         <!-- Ressources -->
