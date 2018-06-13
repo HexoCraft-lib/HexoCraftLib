@@ -72,6 +72,7 @@
         <git-commit-id-plugin.version>2.2.4</git-commit-id-plugin.version>          <!-- https://github.com/ktoso/maven-git-commit-id-plugin/blob/master/README.md -->
         <maven-enforcer-plugin.version>3.0.0-M1</maven-enforcer-plugin.version>     <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-enforcer-plugin -->
         <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>              <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-clean-plugin -->
+        <maven-surefire-plugin>2.21.0</maven-surefire-plugin>                       <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
         <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>        <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
         <maven-source-plugin.version>3.0.1</maven-source-plugin.version>            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-source-plugin -->
         <maven-javadoc-plugin.version>3.0.1</maven-javadoc-plugin.version>          <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-javadoc-plugin -->
@@ -90,6 +91,8 @@
         <sonar.jacoco.reportPaths>${project.build.directory}/jacoco.exec</sonar.jacoco.reportPaths>
 
         <!-- External dependencies -->
+        <junit.jupiter.version>5.2.0</junit.jupiter.version>                        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
+        <junit.platform.version>1.2.0</junit.platform.version>                      <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-surefire-provider -->
         <proguard-base.version>6.0.3</proguard-base.version>                        <!-- https://mvnrepository.com/artifact/net.sf.proguard/proguard-base -->
         <guava.version>25.1-jre</guava.version>                                     <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
         <gson.version>2.8.5</gson.version>                                          <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
@@ -99,13 +102,13 @@
         <world-edit.version>6.1.7.3</world-edit.version>
         <world-guard.version>6.2.1</world-guard.version>
 
-        <!-- Spigot versions -->
-        <spigot.latest>1.12.2-R0.1-SNAPSHOT</spigot.latest>
-        <spigot.1.12.2>1.12.2-R0.1-SNAPSHOT</spigot.1.12.2>
-        <spigot.1.11.2>1.11.2-R0.1-SNAPSHOT</spigot.1.11.2>
-        <spigot.1.10.2>1.10.2-R0.1-SNAPSHOT</spigot.1.10.2>
-        <spigot.1.9.4>1.9.4-R0.1-SNAPSHOT</spigot.1.9.4>
-        <spigot.1.8.8>1.8.8-R0.1-SNAPSHOT</spigot.1.8.8>
+        <!-- Bukkit versions -->
+        <bukkit.latest>1.12.2-R0.1-SNAPSHOT</bukkit.latest>
+        <bukkit.1.12.2>1.12.2-R0.1-SNAPSHOT</bukkit.1.12.2>
+        <bukkit.1.11.2>1.11.2-R0.1-SNAPSHOT</bukkit.1.11.2>
+        <bukkit.1.10.2>1.10.2-R0.1-SNAPSHOT</bukkit.1.10.2>
+        <bukkit.1.9.4>1.9.4-R0.1-SNAPSHOT</bukkit.1.9.4>
+        <bukkit.1.8.8>1.8.8-R0.1-SNAPSHOT</bukkit.1.8.8>
     </properties>
 
     <!-- HexoCrat artifactory repository should have all needed artifacts to build the libs -->
@@ -128,8 +131,24 @@
         </repository>
     </distributionManagement>
 
+    <!-- Dependencies -->
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+        </dependency>
+    </dependencies>
+
+    <!-- Available dependencies -->
     <dependencyManagement>
         <dependencies>
+            <!-- JUnit 5 -->
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-engine</artifactId>
+                <version>${junit.jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
             <!-- Guava -->
             <dependency>
                 <groupId>com.google.guava</groupId>
@@ -176,6 +195,11 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <!-- Surefire -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
             </plugin>
         </plugins>
 
@@ -245,6 +269,19 @@
                         <source>${jdk.version}</source>
                         <target>${jdk.version}</target>
                     </configuration>
+                </plugin>
+                <!-- Surefire -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven-surefire-plugin}</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.junit.platform</groupId>
+                            <artifactId>junit-platform-surefire-provider</artifactId>
+                            <version>${junit.platform.version}</version>
+                        </dependency>
+                    </dependencies>
                 </plugin>
                 <!-- Source -->
                 <plugin>
