@@ -1,4 +1,21 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+  Copyright 2018 hexosse
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -17,7 +34,7 @@
 
     <!-- Info -->
     <name>${project.artifactId}</name>
-    <description></description>
+    <description>The HexoCraft Parent POM provides common settings for all HexoCraft libraries.</description>
     <url>https://github.com/HexoCraft-lib/${project.name}</url>
     
     <!-- Want to contibute? Anybody is welcome -->
@@ -83,6 +100,7 @@
         <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-deploy-plugin -->
         <sonar-maven-plugin.version>3.4.0.905</sonar-maven-plugin.version>          <!-- https://mvnrepository.com/artifact/org.sonarsource.scanner.maven/sonar-maven-plugin -->
         <jacoco-maven-plugin.version>0.8.1</jacoco-maven-plugin.version>            <!-- https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin -->
+        <license-helper-maven-plugin.version>1.26</license-helper-maven-plugin.version>
 
         <!-- SonarQube -->                                                          <!-- https://docs.sonarqube.org/display/SONAR/Analysis+Parameters -->
         <sonar.host.url>http://sonarqube.hexocube.fr/</sonar.host.url>
@@ -110,6 +128,15 @@
         <bukkit.1.10.2>1.10.2-R0.1-SNAPSHOT</bukkit.1.10.2>
         <bukkit.1.9.4>1.9.4-R0.1-SNAPSHOT</bukkit.1.9.4>
         <bukkit.1.8.8>1.8.8-R0.1-SNAPSHOT</bukkit.1.8.8>
+
+        <!-- License Configuration -->
+        <license.organizationName>HexoCraft</license.organizationName>
+        <license.inceptionYear>2018</license.inceptionYear>
+        <license.licenseName>apache_v2</license.licenseName>
+        <license.licenseFile>LICENSE</license.licenseFile>
+        <license.bundleLicenseFile>META-INF/LICENSE.txt</license.bundleLicenseFile>
+        <license.failOnLicenseCheck>false</license.failOnLicenseCheck>
+        <license.failOnMissingLicense>false</license.failOnMissingLicense>
     </properties>
 
     <!-- HexoCrat artifactory repository should have all needed artifacts to build the libs -->
@@ -119,6 +146,12 @@
             <url>http://repo.hexocube.fr/artifactory/public</url>
         </repository>
     </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>hexocraft-repo</id>
+            <url>http://repo.hexocube.fr/artifactory/public</url>
+        </pluginRepository>
+    </pluginRepositories>
 
     <!-- HexoCrat artifactory server -->
     <distributionManagement>
@@ -198,7 +231,7 @@
         <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
         <finalName>${project.artifactId}</finalName>
 
-        <!-- Ressources -->
+        <!-- Resources -->
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -227,6 +260,11 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
+            </plugin>
+            <!-- License -->
+            <plugin>
+                <groupId>org.pentaho.maven.plugins</groupId>
+                <artifactId>license-helper-maven-plugin</artifactId>
             </plugin>
         </plugins>
 
@@ -392,6 +430,27 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-deploy-plugin</artifactId>
                     <version>${maven-deploy-plugin.version}</version>
+                </plugin>
+                <!-- License -->
+                <plugin>
+                    <groupId>org.pentaho.maven.plugins</groupId>
+                    <artifactId>license-helper-maven-plugin</artifactId>
+                    <version>${license-helper-maven-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>bundle-license</id>
+                            <phase>generate-resources</phase>
+                            <goals><goal>bundle</goal></goals>
+                        </execution>
+                        <execution>
+                            <id>check-license</id>
+                            <phase>validate</phase>
+                            <goals><goal>check-license</goal></goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <bundleLicenseFile></bundleLicenseFile>
+                    </configuration>
                 </plugin>
             </plugins>
 
