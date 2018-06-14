@@ -242,4 +242,5 @@ $RECYCLE.BIN/
 
 ### Personal data ###
 **/.*
+!.editorconfig
 !.gitignore
