@@ -103,6 +103,7 @@
         <world-guard.version>6.2.1</world-guard.version>
 
         <!-- Bukkit versions -->
+        <bukkit.default>1.12.2-R0.1-SNAPSHOT</bukkit.default>
         <bukkit.latest>1.12.2-R0.1-SNAPSHOT</bukkit.latest>
         <bukkit.1.12.2>1.12.2-R0.1-SNAPSHOT</bukkit.1.12.2>
         <bukkit.1.11.2>1.11.2-R0.1-SNAPSHOT</bukkit.1.11.2>
@@ -146,7 +147,7 @@
             <dependency>
                 <groupId>org.bukkit</groupId>
                 <artifactId>bukkit</artifactId>
-                <version>${spigot.latest}</version>
+                <version>${bukkit.default}</version>
                 <scope>provided</scope>
                 <exclusions>
                     <exclusion>
@@ -159,7 +160,7 @@
             <dependency>
                 <groupId>org.spigotmc</groupId>
                 <artifactId>spigot-api</artifactId>
-                <version>${spigot.latest}</version>
+                <version>${bukkit.default}</version>
                 <scope>provided</scope>
                 <exclusions>
                     <exclusion>
