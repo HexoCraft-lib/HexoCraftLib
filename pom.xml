@@ -115,6 +115,8 @@
         <proguard-base.version>6.0.3</proguard-base.version>                        <!-- https://mvnrepository.com/artifact/net.sf.proguard/proguard-base -->
         <guava.version>25.1-jre</guava.version>                                     <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
         <gson.version>2.8.5</gson.version>                                          <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+        <okhttp.version>3.10.0</okhttp.version>                                     <!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
+        <zt-zip.version>1.13</zt-zip.version>                                       <!-- https://mvnrepository.com/artifact/org.zeroturnaround/zt-zip -->
 
         <!-- Plugins dependencies -->
         <vault.version>1.5.6</vault.version>
@@ -244,6 +246,18 @@
                 <groupId>com.google.code.gson</groupId>
                 <artifactId>gson</artifactId>
                 <version>${gson.version}</version>
+            </dependency>
+            <!-- OkHttp -->
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>${okhttp.version}</version>
+            </dependency>
+            <!-- zt-zip -->
+            <dependency>
+                <groupId>org.zeroturnaround</groupId>
+                <artifactId>zt-zip</artifactId>
+                <version>${zt-zip.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
