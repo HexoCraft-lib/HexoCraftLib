@@ -143,6 +143,7 @@
 
         <!-- HexoCraft libs versions -->
         <hexocraftlib.hexocraft-lib.version>2.0.0-SNAPSHOT</hexocraftlib.hexocraft-lib.version>
+        <hexocraftlib.hexocraft-lib.minemock-bukkit>2.0.0-SNAPSHOT</hexocraftlib.hexocraft-lib.minemock-bukkit>
         <hexocraftlib.utilities.version>2.0.0-SNAPSHOT</hexocraftlib.utilities.version>
         <hexocraftlib.httpclient.version>2.0.0-SNAPSHOT</hexocraftlib.httpclient.version>
         <hexocraftlib.updater.version>2.0.0-SNAPSHOT</hexocraftlib.updater.version>
@@ -239,6 +240,13 @@
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-junit-jupiter</artifactId>
                 <version>${mockito-junit-jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <!-- MineMock -->
+            <dependency>
+                <groupId>com.github.hexocraft-lib</groupId>
+                <artifactId>minemock-bukkit</artifactId>
+                <version>${hexocraftlib.hexocraft-lib.minemock-bukkit}</version>
                 <scope>test</scope>
             </dependency>
             <!-- Guava -->
