@@ -140,6 +140,12 @@
         <license.bundleLicenseFile>META-INF/LICENSE.txt</license.bundleLicenseFile>
         <license.failOnLicenseCheck>false</license.failOnLicenseCheck>
         <license.failOnMissingLicense>false</license.failOnMissingLicense>
+
+        <!-- HexoCraft libs versions -->
+        <hexocraftlib.hexocraft-lib.version>2.0.0-SNAPSHOT</hexocraftlib.hexocraft-lib.version>
+        <hexocraftlib.utilities.version>2.0.0-SNAPSHOT</hexocraftlib.utilities.version>
+        <hexocraftlib.httpclient.version>2.0.0-SNAPSHOT</hexocraftlib.httpclient.version>
+        <hexocraftlib.updater.version>2.0.0-SNAPSHOT</hexocraftlib.updater.version>
     </properties>
 
     <!-- HexoCrat artifactory repository should have all needed artifacts to build the libs -->
@@ -487,7 +493,7 @@
                         </execution>
                     </executions>
                     <configuration>
-                        <bundleLicenseFile></bundleLicenseFile>
+                        <bundleLicenseFile/>
                     </configuration>
                 </plugin>
             </plugins>
