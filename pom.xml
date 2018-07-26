@@ -71,7 +71,7 @@
     <!-- Jenkins server -->
     <ciManagement>
         <system>Jenkins</system>
-        <url>http://jenkins.hexocube.fr/job/hexocraft-lib/job/${project.name}</url>
+        <url>http://jenkins.hexocube.fr/job/HexoCraft-lib/job/${project.name}</url>
     </ciManagement>
 
     <!-- Properties -->
