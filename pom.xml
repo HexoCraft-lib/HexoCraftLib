@@ -33,9 +33,9 @@
     <packaging>pom</packaging>
 
     <!-- Info -->
-    <name>${project.artifactId}</name>
+    <name>HexoCraftLib</name>
     <description>The HexoCraft Parent POM provides common settings for all HexoCraft libraries.</description>
-    <url>https://github.com/HexoCraft-lib/${project.name}</url>
+    <url>https://github.com/HexoCraft-lib/HexoCraftLib</url>
     
     <!-- Want to contibute? Anybody is welcome -->
     <developers>
@@ -57,21 +57,21 @@
 
     <!-- Source control -->
     <scm>
-        <connection>scm:git:git://github.com/HexoCraft-lib/${project.name}.git</connection>
-        <developerConnection>scm:git:git@github.com:HexoCraft-lib/${project.name}.git</developerConnection>
-        <url>http://github.com/HexoCraft-lib/${project.name}</url>
+        <connection>scm:git:git://github.com/HexoCraft-lib/HexoCraftLib.git</connection>
+        <developerConnection>scm:git:git@github.com:HexoCraft-lib/HexoCraftLib.git</developerConnection>
+        <url>http://github.com/HexoCraft-lib/HexoCraftLib</url>
     </scm>
 
     <!-- Issue management -->
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/HexoCraft-lib/${project.name}/issues</url>
+        <url>https://github.com/HexoCraft-lib/HexoCraftLib/issues</url>
     </issueManagement>
 
     <!-- Jenkins server -->
     <ciManagement>
         <system>Jenkins</system>
-        <url>http://jenkins.hexocube.fr/job/HexoCraft-lib/job/${project.name}</url>
+        <url>http://jenkins.hexocube.fr/job/hexocraft-lib/job/HexoCraftLib</url>
     </ciManagement>
 
     <!-- Properties -->
