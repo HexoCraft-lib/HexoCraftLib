@@ -157,9 +157,10 @@
 
         <!-- HexoCraft libs versions -->
         <hexocraftlib.hexocraft-lib.version>2.0.0-SNAPSHOT</hexocraftlib.hexocraft-lib.version>
-        <hexocraftlib.hexocraft-lib.minemock-bukkit>2.0.0-SNAPSHOT</hexocraftlib.hexocraft-lib.minemock-bukkit>
-        <hexocraftlib.utilities.version>2.0.0-SNAPSHOT</hexocraftlib.utilities.version>
+        <hexocraftlib.minemock-bukkit.version>2.0.0-SNAPSHOT</hexocraftlib.minemock-bukkit.version>
         <hexocraftlib.httpclient.version>2.0.0-SNAPSHOT</hexocraftlib.httpclient.version>
+        <hexocraftlib.taskchain.version>2.0.0-SNAPSHOT</hexocraftlib.taskchain.version>
+        <hexocraftlib.utilities.version>2.0.0-SNAPSHOT</hexocraftlib.utilities.version>
         <hexocraftlib.updater.version>2.0.0-SNAPSHOT</hexocraftlib.updater.version>
     </properties>
 
@@ -260,7 +261,7 @@
             <dependency>
                 <groupId>com.github.hexocraft-lib</groupId>
                 <artifactId>minemock-bukkit</artifactId>
-                <version>${hexocraftlib.hexocraft-lib.minemock-bukkit}</version>
+                <version>${hexocraftlib.minemock-bukkit.version}</version>
                 <scope>test</scope>
             </dependency>
             <!-- Guava -->
