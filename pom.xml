@@ -33,7 +33,7 @@
     <packaging>pom</packaging>
 
     <!-- Info -->
-    <name>HexoCraftLib</name>
+    <name>HexoCraftLib parent pom</name>
     <description>The HexoCraft Parent POM provides common settings for all HexoCraft libraries.</description>
     <url>https://github.com/HexoCraft-lib/HexoCraftLib</url>
     
@@ -170,7 +170,7 @@
 
     </properties>
 
-    <!-- HexoCrat artifactory repository should have all needed artifacts to build the libs -->
+    <!-- HexoCraft artifactory repository should have all needed artifacts to build the libs -->
     <repositories>
        <repository>
             <id>hexocraft-repo</id>
@@ -184,7 +184,7 @@
         </pluginRepository>
     </pluginRepositories>
 
-    <!-- HexoCrat artifactory server -->
+    <!-- HexoCraft artifactory server -->
     <distributionManagement>
         <snapshotRepository>
             <id>hexocraft-snapshots</id>
