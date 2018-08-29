@@ -156,6 +156,7 @@
 
         <!-- HexoCraft libs versions -->
         <hexocraftlib.hexocraft-lib.version>2.0.0-SNAPSHOT</hexocraftlib.hexocraft-lib.version>
+        <hexocraftlib.reflection.version>2.0.0-SNAPSHOT</hexocraftlib.reflection.version>
         <hexocraftlib.minemock-bukkit.version>2.0.0-SNAPSHOT</hexocraftlib.minemock-bukkit.version>
         <hexocraftlib.httpclient.version>2.0.0-SNAPSHOT</hexocraftlib.httpclient.version>
         <hexocraftlib.taskchain.version>2.0.0-SNAPSHOT</hexocraftlib.taskchain.version>
