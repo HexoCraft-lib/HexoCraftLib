@@ -103,6 +103,7 @@
         <maven-surefire-plugin.version>2.21.0</maven-surefire-plugin.version>       <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
         <proguard-maven-plugin.version>2.0.14</proguard-maven-plugin.version>       <!-- https://wvengen.github.io/proguard-maven-plugin -->
         <sonar-maven-plugin.version>3.4.0.905</sonar-maven-plugin.version>          <!-- https://mvnrepository.com/artifact/org.sonarsource.scanner.maven/sonar-maven-plugin -->
+        <echo-maven-plugin.version>0.3.0</echo-maven-plugin.version>                <!-- https://mvnrepository.com/artifact/com.soebes.maven.plugins/echo-maven-plugin -->
 
         <!-- SonarQube: Global settings -->                                          <!-- https://docs.sonarqube.org/display/SONAR/Analysis+Parameters -->
         <sonar.host.url>http://sonarqube.hexocube.fr/</sonar.host.url>
@@ -551,6 +552,18 @@
                     <configuration>
                         <bundleLicenseFile/>
                     </configuration>
+                </plugin>
+                <!-- Echo -->
+                <plugin>
+                    <groupId>com.soebes.maven.plugins</groupId>
+                    <artifactId>echo-maven-plugin</artifactId>
+                    <version>${echo-maven-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <phase>install</phase>
+                            <goals><goal>echo</goal></goals>
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
 
