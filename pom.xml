@@ -563,7 +563,7 @@
         <!-- SonarQube -->
         <profile>
 
-            <id>sonar</id>
+            <id>SonarQube</id>
 
             <activation>
                 <activeByDefault>false</activeByDefault>
